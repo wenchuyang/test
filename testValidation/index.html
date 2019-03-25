@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test validation</title>
+
+  <style>
+  .kiosk-display-info{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .kiosk-form-item{
+    margin: 24px;
+  }
+  .kiosk-input,
+  .kiosk-input-wrap{
+    display: inline;
+  }
+  .kiosk-input input{
+    width: 280px;
+    height: 28px;
+  }
+  .btn-primary{
+    padding: 12px 24px;
+  }
+  .form-error-input-wrap{
+    display: inline-block;
+    position: relative;
+  }
+  .form-error-message{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+    color: red;
+  }
+  </style>
+</head>
+<body>
+  <form id="modifyCustomer" class="kiosk-display-info kiosk-mb-sm">
+    <div class="row form-group kiosk-info-title">Customer Info</div>   
+      <div class="kiosk-form-item">
+        <label class="col-md-2">Name:</label>
+        <div class="form-controll col-md-2 kiosk-input">
+          <input type="text" class="kiosk-input-none" id="name" name="name" reg-key="required">
+        </div>
+      </div>
+      <div class="kiosk-form-item">
+        <label class="col-md-2">Mail:</label>
+        <div class="form-controll col-md-2 kiosk-input">
+          <input type="text" class="kiosk-input-none" id="email" name="email" reg-key="required email">
+        </div>
+      </div>
+      <div class="kiosk-form-item">
+        <label class="col-md-2">Phone:</label>
+        <div class="form-controll col-md-2 kiosk-input">
+          <input type="text" class="kiosk-input-none" id="phone" name="phone" reg-key="phone">
+        </div> 
+      </div>
+      <div class="kiosk-form-item">
+        <label class="col-md-2">Password:</label>
+        <div class="form-controll col-md-2 kiosk-input">
+          <input type="text" class="kiosk-input-none" id="password" name="password" reg-key="required">
+        </div> 
+      </div>
+      <div class="kiosk-form-item">
+        <label class="col-md-2">Confirm Password:</label>
+        <div class="form-controll col-md-2 kiosk-input">
+          <input type="text" class="kiosk-input-none" id="confirmPsw" name="confirmPsw" reg-key="required" reg-equal="password">
+        </div> 
+      </div>
+    <button type="submit" id="submitModifyCustomer" class="btn btn-primary">Submit</button>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="./validation.js"></script>
+  <script>
+    var _cn = {
+      "Empty": "你没有填写这个值哦"
+    }
+
+    $("#modifyCustomer").on("submit", function(e){
+      e.preventDefault();
+      var map = FormValid.validation("#modifyCustomer");
+      FormValid.setLanguage("",_cn);
+      if(!$.isEmptyObject(map)){
+        FormValid.show("#modifyCustomer", map, "1");
+      }else{
+        alert("提交成功哈哈哈");
+      }
+    })  
+    
+  </script>
+</body>
+</html>

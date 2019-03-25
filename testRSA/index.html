@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <style>
+        form{
+            margin: 100px auto;
+            width: 420px;
+            text-align: center;
+        }
+        input{
+            margin: 12px;
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #aaa;
+            outline: none;
+            border-radius: 4px;
+        }
+        button{
+            padding: 4px 18px;
+            font-size: 24px;
+            background-color: goldenrod;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="myform" method="POST">
+        <input id="name" type="text" placeholder="Name" name="name">
+        <input id="password" type="text" placeholder="Password" name="password">
+        <textarea id="pkey" name="pkey" id="" cols="30" rows="10" style="display: none;">
+                -----BEGIN PUBLIC KEY-----
+                MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDfWR899N48upTk2bpBKilp6JR7
+                EaLBXpEor2vyp6eVljlTr5hpAWun3Nb5Fy8R2xm0M/gNJ8NW6NNGWO8edQS80BBw
+                1e5c3uSsQTQDjwEcxTmcKzp6j5/8hPgwFW3uwXeqNruShBhH5eCSFVafsy2LbWOY
+                SOncg+99KjD/Sl2HLQIDAQAB
+                -----END PUBLIC KEY-----
+        </textarea>
+        <button id="submit" type="submit">submit</button>
+    </form>
+    <script src="./jsencrypt/bin/jsencrypt.min.js"></script>
+    <script src="./jquery.js"></script>
+    <script>
+        $("#submit").on("click", function (e) {
+            e.preventDefault();
+            var publickey = $("#pkey").val().trim();
+            var name = $("#name").val(), password = $("#password").val();
+            var data = name+","+password;
+
+            var enData = encryptData(data, publickey);  
+            $.ajax({
+                url: "./index.html",
+                type: "POST",
+                data: {"info": enData},
+                dataType: "json",
+                success: function (data) {                    
+                    console.info(data);
+                },
+                error: function (xhr) {
+                    console.log("Something went wrong....");
+                }
+            });
+        })
+        function encryptData(data, publicKey){
+            var jsencrypt = new JSEncrypt();
+            jsencrypt.setPublicKey(publicKey);
+            return jsencrypt.encrypt(data);
+        }
+    </script>
+</body>
+
+</html>
