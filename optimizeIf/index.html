@@ -7,15 +7,45 @@
     <title>if 优化</title>
 </head>
 <body>
-    <button onclick="click()">click me</button>
+    策略模式：
+    <div class="ifTest">
+        if else: 
+        <input name="x" type="number" value="1">
+        <input name="y" type="number" value="2">
+        <button id="add">A加B</button>
+        <button id="sub">A减B</button>
+        <span id="result"></span>
+    </div>
+    <div class="strategyTest">
+        strategy: 
+        <input name="x" type="number" value="1">
+        <input name="y" type="number" value="2">
+        <button id="add1">A加B</button>
+        <button id="sub1">A减B</button>
+        <span id="result1"></span>
+    </div>
+    <hr>
+    状态模式：
+    <button state-button>state test (if else)</button>
+    <button state-button1>state test (state)</button>
+    <hr>
+    表驱动：
+    <div class="direct">
+        直接访问（输入月份获取该月天数）：<br>
+        if else:
+        <input type="number" name="month">
+        <button id="getDays">获取天数</button>
+        <span id="day"></span>
+        <br>
+        table driven:
+        <input type="number" name="month1">
+        <button id="getDays1">获取天数</button>
+        <span id="day1"></span>
+    </div>
+    <script src="state.js"></script>
+    <script src="strategy.js"></script>
+    <script src="tabledriven.js"></script>
     <script>
-        let state = 0;
-        function click(){
-            if (state === 0) {
-                state = 1;
-                console.log(000)
-            }
-        }
     </script>
 </body>
 </html>
