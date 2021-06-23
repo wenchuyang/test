@@ -45,7 +45,7 @@
         if (code === 'weibo') {
             return '微博'
         }
-        return ''
+        return '错啦'
     }
 
     /**
@@ -60,7 +60,7 @@
             'wechat': '微信',
             'weibo': '微博'
         }
-        return map[code] || ''
+        return map[code] || '错啦'
     }
 
     // 阶梯访问
@@ -141,8 +141,30 @@
     })
 
     // 索引访问
-
+    // if
+    const code = document.querySelector('[name=code]')
+    const name = document.querySelector('#name')
+    document.querySelector('#getName').addEventListener('click', ()=>{
+        name.innerText = getName(code.value)
+    })
+    // 表驱动
+    const code1 = document.querySelector('[name=code1]')
+    const name1 = document.querySelector('#name1')
+    document.querySelector('#getName1').addEventListener('click', ()=>{
+        name1.innerText = getName1(code1.value)
+    })
+    
     // 阶梯访问
-
-
+    // if
+    const age = document.querySelector('[name=age]')
+    const desc = document.querySelector('#desc')
+    document.querySelector('#getDesc').addEventListener('click', ()=>{
+        desc.innerText = getDesc(age.value)
+    })
+    // 表驱动
+    const age1 = document.querySelector('[name=age1]')
+    const desc1 = document.querySelector('#desc1')
+    document.querySelector('#getDesc1').addEventListener('click', ()=>{
+        desc1.innerText = getDesc1(age1.value)
+    })
 }.call(undefined)
